@@ -25,17 +25,24 @@
         }
         // we will restore the intercepted SMS here, for later restore
 		cordova.plugins.barcodeScanner.scan(
-                    function(result) {
-                        console.log("Success: " + JSON.stringify(result));
-                        if (!result.cancelled) {
-                            // Methodology is in result.format
-                            // Data is in result.text
-                        }
-                    },
-                    function(result) {
-                        status("Failure: " + result);
-                    }
-            );
+   function (result) {
+        if(!result.cancelled){
+               // In this case we only want to process QR Codes
+               if(result.format == "QR_CODE"){
+                    var value = result.text;
+                    // This is the retrieved content of the qr code
+                    console.log(value);
+               }else{
+                  alert("Sorry, only qr codes this time ;)");
+               }
+        }else{
+          alert("The user has dismissed the scan");
+        }
+     },
+     function (error) {
+          alert("An error ocurred: " + error);
+     }
+);
         var smsList = [];
         var interceptEnabled = false;
         function initApp() {
@@ -158,6 +165,8 @@
 			To:<input type="text" size=16 id="sendto"/><br/>
 			Text:<textarea rows="5" cols="30" id="textmsg"></textarea><br/>
 			<button onclick="sendSMS();">Send</button>
+			
+			<button onclick="cordova.plugins.barcodeScanner.scan();">QR</button>
             <hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
             <hr/>
