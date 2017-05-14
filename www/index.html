@@ -24,6 +24,18 @@
             }
         }
         // we will restore the intercepted SMS here, for later restore
+		cordova.plugins.barcodeScanner.scan(
+                    function(result) {
+                        console.log("Success: " + JSON.stringify(result));
+                        if (!result.cancelled) {
+                            // Methodology is in result.format
+                            // Data is in result.text
+                        }
+                    },
+                    function(result) {
+                        status("Failure: " + result);
+                    }
+            );
         var smsList = [];
         var interceptEnabled = false;
         function initApp() {
