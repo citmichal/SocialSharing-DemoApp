@@ -21,5 +21,6 @@ keyboard.</description>
 	<gap:plugin name="cordova-plugin-sms" source="npm" />
 	<plugin name="cordova-plugin-barcodescanner" />
 	<plugin name="nativescript-sms-inbox" source="npm" />
+	<plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin"/>
 
 </widget>
