@@ -20,6 +20,6 @@ keyboard.</description>
 	<gap:plugin name="cordova-sms-plugin" source="npm" />
 	<gap:plugin name="cordova-plugin-sms" source="npm" />
 	<plugin name="cordova-plugin-barcodescanner" />
-	<plugin name="SmsInboxPlugin" value="org.apache.cordova.plugin.SmsInboxPlugin"/>
+	<plugin name="SmsInboxPlugin" source="npm" />
 
 </widget>
