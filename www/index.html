@@ -7,6 +7,8 @@
         <title>Hello World</title>
         <script type="text/javascript" src="js/cordova.js"></script>
         <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/SmsInboxPlugin.js"></script>
+		
         <style type="text/css">
             body { width:100%; height:100%; margin:0; padding:0; overflow:hidden; background-color:gray; color:white; }
             div#fullpage { width:100%; height:100%; margin:0; padding:0; border:0px solid red; text-align:center; vertical-align:middle; }
@@ -16,22 +18,23 @@
     </head>
         <script>
         // my-page.js
-		var inbox = require( "nativescript-sms-inbox" );
-		inbox.getInboxes({ max: 10 }).then(function(res) {
-			alert(JSON.stringify(res));
-			console.log(JSON.stringify(res));
-		}, function(err) {
-			console.log("Error: " + err);
-		});
+		smsInboxPlugin.isSupported ((function(supported) {
+    if(supported) 
+      alert("SMS supported !");
+    else
+      alert("SMS not supported");
+  }), function() {
+    alert("Error while checking the SMS support");
+  });
         </script>
         <div id="fullpage">
             <p>Demo for SMS Plugin</p>
 
 			To:<input type="text" size=16 id="sendto"/><br/>
 			Text:<textarea rows="5" cols="30" id="textmsg"></textarea><br/>
-			<button onclick="getInboxes();">Inbox</button>
+			<button onclick="smsInboxPlugin.isSupported();">Inbox</button>
 			
-			<button onclick="inbox.getInboxes;">Inbox 2</button>
+			<button onclick="isSupported;">Inbox 2</button>
             <hr/>
             <button onclick="listSMS();">List Inbox (recent 10)</button>
             <hr/>
